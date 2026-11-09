@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "phantomclient",
+  "version": "1.0.0",
+  "name": "Phantom Client V4",
+  "description": "A powerful client-side utility mod for Minecraft 1.20.4",
+  "authors": ["YourName"],
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "main": ["com.phantomclient.PhantomClient"]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.5",
+    "fabric-api": "*",
+    "minecraft": "1.20.4"
+  },
+  "screenshots": [],
+  "icon": "assets/phantomclient/icon.png"
+}
