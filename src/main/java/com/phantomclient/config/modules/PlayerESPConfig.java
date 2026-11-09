@@ -37,7 +37,52 @@ public class PlayerESPConfig extends ModuleConfig {
         ConfigManager.saveConfig();
     }
 
-    // ... (add all other getters/setters with ConfigManager.saveConfig() calls)
+    public boolean isShowDistance() { return showDistance; }
+    public void setShowDistance(boolean showDistance) {
+        this.showDistance = showDistance;
+        ConfigManager.saveConfig();
+    }
+
+    public float getNameScale() { return nameScale; }
+    public void setNameScale(float nameScale) {
+        this.nameScale = MathHelper.clamp(nameScale, 0.1f, 3.0f);
+        ConfigManager.saveConfig();
+    }
+
+    public float getDistanceScale() { return distanceScale; }
+    public void setDistanceScale(float distanceScale) {
+        this.distanceScale = MathHelper.clamp(distanceScale, 0.1f, 3.0f);
+        ConfigManager.saveConfig();
+    }
+
+    public int getNameColor() { return nameColor; }
+    public void setNameColor(int nameColor) {
+        this.nameColor = nameColor;
+        ConfigManager.saveConfig();
+    }
+
+    public int getDistanceColor() { return distanceColor; }
+    public void setDistanceColor(int distanceColor) {
+        this.distanceColor = distanceColor;
+        ConfigManager.saveConfig();
+    }
+
+    public float getBoxLineWidth() { return boxLineWidth; }
+    public void setBoxLineWidth(float boxLineWidth) {
+        this.boxLineWidth = MathHelper.clamp(boxLineWidth, 0.5f, 5.0f);
+        ConfigManager.saveConfig();
+    }
+
+    public Map<String, Integer> getPlayerColors() { return new HashMap<>(playerColors); }
+    public void setPlayerColor(String playerName, int color) {
+        playerColors.put(playerName, color);
+        ConfigManager.saveConfig();
+    }
+
+    public void removePlayerColor(String playerName) {
+        playerColors.remove(playerName);
+        ConfigManager.saveConfig();
+    }
 
     @Override
     public void loadFromData(Object data) {
@@ -63,3 +108,25 @@ public class PlayerESPConfig extends ModuleConfig {
         data.showNames = this.showNames;
         data.showDistance = this.showDistance;
         data.nameScale = this.nameScale;
+        data.distanceScale = this.distanceScale;
+        data.nameColor = this.nameColor;
+        data.distanceColor = this.distanceColor;
+        data.boxLineWidth = this.boxLineWidth;
+        data.playerColors = new HashMap<>(this.playerColors);
+        return data;
+    }
+
+    // Data class for serialization
+    public static class PlayerESPData {
+        public boolean enabled;
+        public boolean showSelf;
+        public boolean showNames;
+        public boolean showDistance;
+        public float nameScale;
+        public float distanceScale;
+        public int nameColor;
+        public int distanceColor;
+        public float boxLineWidth;
+        public Map<String, Integer> playerColors = new HashMap<>();
+    }
+}
